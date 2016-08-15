@@ -1,0 +1,35 @@
+{
+	"name": "GroupMe",
+	"productName": "GroupMe",
+	"version": "1.0.0",
+	"description": "Unofficial GroupMe App",
+	"scripts": {
+		"start": "electron .",
+		"pack": "rm -rf ./dist/ && electron-packager . --overwrite --asar --out=dist --ignore=\"^/dist$\" --ignore=\"^/media$\" --prune --platform=darwin --arch=x64 --icon=assets/Icon.icns --app-bundle-id=com.dcrousso.GroupMe --app-version=$npm_package_version"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dcrousso/GroupMe.git"
+	},
+	"keywords": [
+		"GroupMe"
+	],
+	"author": {
+		"name": "Devin Rousso",
+		"email": "hi@devinrousso.com",
+		"url": "http://devinrousso.com"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/dcrousso/GroupMe/issues"
+	},
+	"homepage": "https://github.com/dcrousso/GroupMe#readme",
+	"devDependencies": {
+		"electron-packager": "^7.0.0",
+		"electron-prebuilt": "^1.1.1"
+	},
+	"dependencies": {
+		"electron-debug": "^1.0.0",
+		"electron-dl": "^1.0.0"
+	}
+}
