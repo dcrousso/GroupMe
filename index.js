@@ -1,6 +1,7 @@
 const electron   = require("electron");
 const filesystem = require("fs");
 const path       = require("path");
+const Menu       = require("./modules/Menu");
 
 require("electron-debug")();
 require("electron-dl")();
@@ -33,6 +34,7 @@ function createMainWindow() {
 		titleBarStyle: "hidden-inset",
 		webPreferences: {
 			nodeIntegration: false,
+			preload: path.join(__dirname, "inject/app.js"),
 			webSecurity: false
 		}
 	});
@@ -60,6 +62,8 @@ function createMainWindow() {
 }
 
 electron.app.on("ready", () => {
+	electron.Menu.setApplicationMenu(Menu);
+
 	if (!mainWindow)
 		mainWindow = createMainWindow();
 });
