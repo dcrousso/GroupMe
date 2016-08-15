@@ -66,6 +66,7 @@ function createMainWindow() {
 	browser.loadURL("https://web.groupme.com/signin", {userAgent: ""});
 
 	browser.webContents.on("dom-ready", () => {
+		browser.webContents.insertCSS(filesystem.readFileSync(path.join(__dirname, "inject/app.css"), "utf8"));
 		browser.show();
 	});
 
