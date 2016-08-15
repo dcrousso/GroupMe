@@ -8,6 +8,18 @@ function forceInteraction(selector, type = "click") {
 	element[type in element ? type : "click"]();
 }
 
+function countBadges() {
+	return Array.from(document.querySelectorAll(".badge")).reduce((total, element) => total + (parseInt(element.textContent.trim()) || 0), 0);
+}
+
+window.addEventListener("click", () => {
+	electron.ipcRenderer.send("count-badges-result", countBadges());
+});
+
+electron.ipcRenderer.on("count-badges", event => {
+	event.sender.send("count-badges-result", countBadges());
+});
+
 electron.ipcRenderer.on("show-preferences", () => {
 	forceInteraction("body > #app > .app-sidebar > .pillar > .user-navigation > .settings");
 });

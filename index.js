@@ -22,6 +22,10 @@ const isAlreadyRunning = electron.app.makeSingleInstance(() => {
 if (isAlreadyRunning)
 	electron.app.quit();
 
+electron.ipcMain.on("count-badges-result", (event, data) => {
+	electron.app.dock.setBadge(data ? data.toString() : "");
+});
+
 function createMainWindow() {
 	const browser = new electron.BrowserWindow({
 		width: 900,
@@ -37,6 +41,13 @@ function createMainWindow() {
 			preload: path.join(__dirname, "inject/app.js"),
 			webSecurity: false
 		}
+	});
+
+	browser.on("page-title-updated", (event, title) => {
+		if (!title.includes("New message"))
+			return;
+
+		event.sender.send("count-badges");
 	});
 
 	browser.on("close", event => {
@@ -73,6 +84,7 @@ electron.app.on("activate", () => {
 		mainWindow = createMainWindow();
 
 	mainWindow.show();
+	mainWindow.send("count-badges");
 });
 
 electron.app.on("before-quit", () => {
