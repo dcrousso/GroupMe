@@ -2,6 +2,7 @@ const electron   = require("electron");
 const filesystem = require("fs");
 const path       = require("path");
 const Menu       = require("./modules/Menu");
+const Storage    = require("./modules/Storage");
 
 require("electron-debug")();
 require("electron-dl")();
@@ -27,9 +28,13 @@ electron.ipcMain.on("count-badges-result", (event, data) => {
 });
 
 function createMainWindow() {
+	const lastWindowState = Storage.get("lastWindowState") || {width: 900, height: 675};
+
 	const browser = new electron.BrowserWindow({
-		width: 900,
-		height: 675,
+		width: lastWindowState.width,
+		height: lastWindowState.height,
+		x: lastWindowState.x,
+		y: lastWindowState.y,
 		minWidth: 600,
 		minHeight: 450,
 		title: electron.app.getName(),
@@ -89,4 +94,7 @@ electron.app.on("activate", () => {
 
 electron.app.on("before-quit", () => {
 	isQuitting = true;
+
+	if (mainWindow && !mainWindow.isFullScreen())
+		Storage.set("lastWindowState", mainWindow.getBounds());
 });
