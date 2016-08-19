@@ -12,7 +12,10 @@
 		"url": "git+https://github.com/dcrousso/GroupMe.git"
 	},
 	"keywords": [
-		"GroupMe"
+		"GroupMe",
+		"chat",
+		"messaging",
+		"social"
 	],
 	"author": {
 		"name": "Devin Rousso",
