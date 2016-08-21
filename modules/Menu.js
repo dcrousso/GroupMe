@@ -19,7 +19,7 @@ function sendAction(action) {
 
 module.exports = electron.Menu.buildFromTemplate([
 	{
-		label: electron.app.getName(),
+		label: process.platform === "darwin" ? electron.app.getName() : "File",
 		submenu: [
 			{
 				role: "about"

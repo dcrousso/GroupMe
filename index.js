@@ -24,7 +24,8 @@ if (isAlreadyRunning)
 	electron.app.quit();
 
 electron.ipcMain.on("count-badges-result", (event, data) => {
-	electron.app.dock.setBadge(data ? data.toString() : "");
+	if (typeof electron.app.setBadgeCount === "function")
+		electron.app.setBadgeCount(isNaN(data) ? 0 : data);
 });
 
 function createMainWindow() {
@@ -52,7 +53,7 @@ function createMainWindow() {
 		if (!title.includes("New message"))
 			return;
 
-		event.sender.send("count-badges");
+		browser.webContents.send("count-badges");
 	});
 
 	browser.on("close", event => {
@@ -60,7 +61,11 @@ function createMainWindow() {
 			return;
 
 		event.preventDefault();
-		electron.app.hide();
+
+		if (process.platform === "darwin")
+			electron.app.hide();
+		else
+			electron.app.quit();
 	});
 
 	browser.loadURL("https://web.groupme.com/signin", {userAgent: ""});
