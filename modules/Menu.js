@@ -22,10 +22,7 @@ module.exports = electron.Menu.buildFromTemplate([
 		label: electron.app.getName(),
 		submenu: [
 			{
-				label: `About ${electron.app.getName()}`,
-				click() {
-					electron.shell.openExternal("https://groupme.com/about");
-				}
+				role: "about"
 			},
 			{
 				type: "separator"
@@ -53,7 +50,6 @@ module.exports = electron.Menu.buildFromTemplate([
 				type: "separator"
 			},
 			{
-				label: "Services",
 				role: "services",
 				submenu: []
 			},
@@ -61,28 +57,19 @@ module.exports = electron.Menu.buildFromTemplate([
 				type: "separator"
 			},
 			{
-				label: `Hide ${electron.app.getName()}`,
-				accelerator: "Cmd+H",
 				role: "hide"
 			},
 			{
-				label: "Hide Others",
-				accelerator: "Shift+Cmd+H",
 				role: "hideothers"
 			},
 			{
-				label: "Show All",
 				role: "unhide"
 			},
 			{
 				type: "separator"
 			},
 			{
-				label: `Quit ${electron.app.getName()}`,
-				accelerator: "Cmd+Q",
-				click() {
-					electron.app.quit();
-				}
+				role: "quit"
 			}
 		]
 	},
@@ -126,78 +113,58 @@ module.exports = electron.Menu.buildFromTemplate([
 		label: "Edit",
 		submenu: [
 			{
-				label: "Undo",
-				accelerator: "CmdOrCtrl+Z",
 				role: "undo"
 			},
 			{
-				label: "Redo",
-				accelerator: "Shift+CmdOrCtrl+Z",
 				role: "redo"
 			},
 			{
 				type: "separator"
 			},
 			{
-				label: "Copy",
-				accelerator: "CmdOrCtrl+C",
 				role: "copy"
 			},
 			{
-				label: "Cut",
-				accelerator: "CmdOrCtrl+X",
 				role: "cut"
 			},
 			{
-				label: "Paste",
-				accelerator: "CmdOrCtrl+V",
 				role: "paste"
 			},
 			{
-				label: "Select All",
-				accelerator: "CmdOrCtrl+A",
+				role: "pasteandmatchstyle"
+			},
+			{
+				role: "delete"
+			},
+			{
 				role: "selectall"
 			}
 		]
 	},
 	{
-		label: "Window",
 		role: "window",
 		submenu: [
 			{
-				label: "Minimize",
-				accelerator: "CmdOrCtrl+M",
 				role: "minimize"
 			},
 			{
-				label: "Zoom",
 				role: "zoom"
 			},
 			{
-				label: "Toggle Full Screen",
-				accelerator: "Ctrl+Cmd+F",
-				click() {
-					getWindow(browser => {
-						browser.setFullScreen(!browser.isFullScreen());
-					});
-				}
+				role: "togglefullscreen"
 			},
 			{
-				label: "Close",
-				accelerator: "Shift+CmdOrCtrl+W",
 				role: "close"
 			},
 			{
 				type: "separator"
 			},
 			{
-				label: "Bring All to Front",
 				role: "front"
 			}
 		]
 	},
 	{
-		label: "Help",
 		role: "help",
 		submenu: [
 			{
