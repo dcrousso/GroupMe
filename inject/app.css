@@ -41,6 +41,9 @@ body > #app > .app-sidebar > .pillar {
 	position: static;
 	width: var(--sidebar-width);
 	height: auto;
+	padding-top: 1px;
+	background-color: white;
+	border-bottom: 1px solid #e6e6e6;
 }
 
 body > #app > .app-sidebar > .pillar > .logo {
@@ -62,10 +65,22 @@ body > #app > .app-sidebar > #tray {
 	display: block !important;
 	top: var(--dragbar-height);
 	left: 0;
+	width: 100%;
 }
 
 body > #app > .app-sidebar > #tray > .tray-header > .row {
+	justify-content: space-between;
 	margin: 0;
+}
+
+body > #app > .app-sidebar > #tray > .tray-header > .row::before,
+body > #app > .app-sidebar > #tray > .tray-header > .row::after {
+	content: initial;
+}
+
+body > #app > .app-sidebar > #tray > .tray-header > .row > * {
+	float: none;
+	width: auto;
 }
 
 body > #app > .app-sidebar > #tray > .tray-header > .row > :first-child {
@@ -74,6 +89,22 @@ body > #app > .app-sidebar > #tray > .tray-header > .row > :first-child {
 
 body > #app > .app-sidebar > #tray > .tray-header > .row > :last-child {
 	padding-right: 0;
+}
+
+body > #app > .app-sidebar > #tray > .list-search {
+	height: auto;
+}
+
+body > #app > .app-sidebar > #tray > .list-search > input {
+	width: calc(100% - 32px);
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: transparent;
+	outline: none;
+}
+
+body > #app > .app-sidebar > #tray > .list-search > button {
+	top: calc(50% - 6px);
 }
 
 body > #app > .app-sidebar > #tray > .tray-list {
