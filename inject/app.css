@@ -1,270 +1,85 @@
 :root {
-	--dragbar-height: 50px;
-	--sidebar-width: 280px;
+	--dragbar-height: 40px;
 }
 
-body::before {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: -1;
-	height: var(--dragbar-height);
-	content: "";
+
+
+/* / */
+
+header.svelte-1pxnud7 {
 	-webkit-app-region: drag;
 }
 
-body > #app {
-	height: 100vh;
+header.svelte-1pxnud7 :is(p, a) {
+	-webkit-app-region: no-drag;
 }
 
-body > #app .accessible-focus:focus {
-	outline: none !important;
-}
-
-body > #app .groupme-list .list-item {
-	outline: none;
-}
-
-body > #app > #page {
-	padding-left: 0;
+@media (min-width: 959px) {
+	header.svelte-1pxnud7 nav.svelte-1pxnud7 a.svelte-1pxnud7.logo {
+		padding-left: 40px;
+	}
 }
 
 
-/* Pillar */
+
+/* /chats */
+
 body > #app > .app-sidebar {
-	display: block;
-	width: var(--sidebar-width);
-}
-
-body > #app > .app-sidebar > .pillar {
-	position: static;
-	width: var(--sidebar-width);
-	height: auto;
-	padding-top: 1px;
-	background-color: white;
-	border-bottom: 1px solid #e6e6e6;
-}
-
-body > #app > .app-sidebar > .pillar > .logo {
-	display: none;
-}
-
-body > #app > .app-sidebar > .pillar > .tray-controls {
-	display: flex;
-	justify-content: flex-end;
-	margin: 0;
-}
-
-body > #app > .app-sidebar > .pillar > .tray-controls > .tab {
-	line-height: initial;
-	-webkit-app-region: no-drag
-}
-
-body > #app > .app-sidebar > #tray {
-	display: block !important;
-	top: var(--dragbar-height);
-	left: 0;
-	width: 100%;
-}
-
-body > #app > .app-sidebar > #tray > .tray-header > .row {
-	justify-content: space-between;
-	margin: 0;
-}
-
-body > #app > .app-sidebar > #tray > .tray-header > .row::before,
-body > #app > .app-sidebar > #tray > .tray-header > .row::after {
-	content: initial;
-}
-
-body > #app > .app-sidebar > #tray > .tray-header > .row > * {
-	float: none;
 	width: auto;
 }
 
-body > #app > .app-sidebar > #tray > .tray-header > .row > :first-child {
-	padding-left: 0;
+body > #app > .app-sidebar > .pillar {
+	flex-direction: row;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: var(--dragbar-height);
+	padding-left: 80px;
+	border-right: none;
+	-webkit-app-region: drag;
 }
 
-body > #app > .app-sidebar > #tray > .tray-header > .row > :last-child {
-	padding-right: 0;
+body > #app > .app-sidebar > .pillar > .tray-controls {
+	flex-direction: row;
 }
 
-body > #app > .app-sidebar > #tray > .list-search {
-	height: auto;
-}
-
-body > #app > .app-sidebar > #tray > .list-search > input {
-	width: calc(100% - 32px);
+body > #app > .app-sidebar > .pillar > .user-navigation {
+	display: flex;
+	flex-direction: row;
 	margin-top: 0;
 	margin-bottom: 0;
-	background-color: transparent;
-	outline: none;
 }
 
-body > #app > .app-sidebar > #tray > .list-search > button {
-	top: calc(50% - 6px);
-}
-
-body > #app > .app-sidebar > #tray > .tray-list {
-	height: -webkit-fill-available;
-}
-
-
-/* Sign In */
-body > #app > #page > #signin {
-	margin-top: calc(50vh - 250px);
-}
-
-
-/* Chat */
-body > #app > #page > #chats {
-	margin-left: var(--sidebar-width);
-}
-
-body > #app > #page > #chats > .chat {
-	min-width: initial;
-	max-width: none;
-	border: none;
-}
-
-body > #app > #page > #chats > .chat + .chat {
-	border-left: 1px solid #d4d4d4;
-}
-
-body > #app > #page > #chats > .chat > .chat-header > .menu-toggle {
-	display: inline-block;
-	-webkit-app-region: no-drag
-}
-
-body > #app > #page > #chats > .chat > .chat-header > .close-chat {
-	-webkit-app-region: no-drag
-}
-
-body > #app > #page > #chats > .chat > .chat-content > .chat-content-layout > .chat-input > .message-composer > .composer-layout > .controls > .emoji-button {
-	line-height: 22px;
-}
-
-
-/* User */
-body > #app > #page > .user-profile {
-	width: initial;
-	margin: var(--dragbar-height) 0 0 var(--sidebar-width);
-}
-
-body > #app > #page > .user-profile > .avatar {
-	min-height: 200px;
-	margin-bottom: 40px;
-}
-
-body > #app > #page > .user-profile > .avatar > .upload-image {
+body > #app > .app-sidebar > .pillar .tab {
+	margin-top: 0;
 	margin-bottom: 0;
+	-webkit-app-region: no-drag;
 }
 
-body > #app > #page > .user-profile > .account-info > .row {
-	margin: 0 auto 10px;
+body > #app > .app-sidebar > .pillar .tab.logo {
+	display: none;
 }
 
-
-/* Contacts */
-/* Archives */
-body > #app > #page > .content-card {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: initial;
-	height: 100%;
-	margin: 0 0 0 var(--sidebar-width);
+body > #app > .app-sidebar > #tray {
+	top:  var(--dragbar-height);
+	left: 0;
 }
 
-
-/* Settings */
-body > #app > #page > .user-settings {
-	width: initial;
-	margin: 0 0 0 var(--sidebar-width);
+body > #app > #page {
+	margin-left: 0;
+	padding-top: var(--dragbar-height);
 }
 
-body > #app > #page > .user-settings > .notification-settings > h4 {
-	margin: 0.835em 25px;
+body > #app > .app-sidebar.open ~ #page {
+	margin-left: 325px;
 }
 
-
-/* Tokens */
-body > #ap > #page > .access-tokens {
-	width: initial;
-	margin: 0 0 0 var(--sidebar-width);
-	padding-bottom: 0;
+body > #app > .app-sidebar:not(.open) ~ #page > #chats > .chat {
+	border-left: none;
 }
 
-
-/* Modal */
 body > .modal {
-	display: flex !important;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
-}
-
-body > .modal > .modal-dialog {
-	margin: 0 auto;
-	padding: 20px;
-}
-
-body > .modal > .modal-dialog > .modal-content > .modal-body {
-	/* 20px * 2 (top and bottom of body > .modal.group-members) */
-	/* 56px (height of body > .modal > .modal-dialog > .modal-content > .modal-header) */
-	height: calc(100vh - 96px);
-	overflow: scroll;
-}
-
-
-/* Modal > Group  */
-body > .modal:matches(.new-group, .new-dm) > .modal-dialog > .modal-content .upload-image {
-    margin: 0 0 5px;
-}
-body > .modal.new-group > .modal-dialog > .modal-content .modal-body > .upload-image {
-	margin: 0 auto 20px;
-}
-
-body > .modal.new-group > .modal-dialog > .modal-content .modal-body > .group-name {
-	margin-bottom: 5px;
-}
-
-body > .modal.new-dm > .modal-dialog > .modal-content > .modal-body {
-	/* 20px * 2 (top and bottom of body > .modal.group-members) */
-	/* 56px (height of body > .modal > .modal-dialog > .modal-content > .modal-header) */
-	/* 72px (height of body > .modal > .modal-dialog > .modal-content > .modal-footer) */
-	height: calc(100vh - 168px);
-}
-
-
-/* Modal > Members */
-body > .modal.group-members > .modal-dialog > .modal-content > .modal-body > .members .member > .avatar {
-	width: 85px;
-	height: 85px;
-}
-
-body > .modal.group-members > .modal-dialog > .modal-content > .modal-body > .members .member > .overlay > button {
-	width: 100%;
-	padding: 6px 0;
-}
-
-
-/* Modal > Media Search */
-body > .modal.media-search-modal > .modal-dialog {
-	min-width: 645px;
-}
-
-body > .modal.media-search-modal > .modal-dialog > .modal-content > .modal-body {
-	padding: 0;
-}
-
-body > .modal.media-search-modal > .modal-dialog > .modal-content > .modal-body > .scroll > .search-results {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 100%;
-	margin: 0;
-	padding: 0;
+	top: var(--dragbar-height);
 }

@@ -33,11 +33,11 @@ electron.ipcRenderer.on("log-out", () => {
 });
 
 electron.ipcRenderer.on("start-group", () => {
-	forceInteraction("body > #app > .app-sidebar > #tray > .tray-header .actions > .new-chat [ng-click=\"newGroupDialog()\"]");
+	forceInteraction("body > #app > .app-sidebar > #tray > .tray-header .actions .new-chat [ng-click=\"newGroupDialog(false)\"]");
 });
 
 electron.ipcRenderer.on("start-direct-message", () => {
-	forceInteraction("body > #app > .app-sidebar > #tray > .tray-header .actions > .new-chat [ng-click=\"newDMDialog()\"]");
+	forceInteraction("body > #app > .app-sidebar > #tray > .tray-header .actions .new-chat [ng-click=\"newDMDialog()\"]");
 });
 
 electron.ipcRenderer.on("search-chats", () => {
