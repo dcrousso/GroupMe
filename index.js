@@ -69,7 +69,7 @@ function createMainWindow() {
 			electron.app.quit();
 	});
 
-	browser.loadURL("https://web.groupme.com/signin", {userAgent: ""});
+	browser.loadURL("https://web.groupme.com/signin", {userAgent: "Chrome"});
 
 	browser.webContents.on("dom-ready", () => {
 		browser.webContents.insertCSS(filesystem.readFileSync(path.join(__dirname, "inject/app.css"), "utf8"));
