@@ -4,13 +4,18 @@ const path       = require("path");
 const Menu       = require("./modules/Menu");
 const Storage    = require("./modules/Storage");
 
-require("electron-debug")();
+// require("electron-debug");
 require("electron-dl")();
 
 let mainWindow = null;
 let isQuitting = false;
 
-const isAlreadyRunning = electron.app.makeSingleInstance(() => {
+if (!electron.app.requestSingleInstanceLock()) {
+	electron.app.quit();
+	return;
+}
+
+electron.app.on("second-instance", () => {
 	if (!mainWindow)
 		return;
 
@@ -19,9 +24,6 @@ const isAlreadyRunning = electron.app.makeSingleInstance(() => {
 
 	mainWindow.show();
 });
-
-if (isAlreadyRunning)
-	electron.app.quit();
 
 electron.ipcMain.on("count-badges-result", (event, data) => {
 	if (typeof electron.app.setBadgeCount === "function")
@@ -41,11 +43,10 @@ function createMainWindow() {
 		title: electron.app.getName(),
 		show: false,
 		autoHideMenuBar: true,
-		titleBarStyle: "hidden-inset",
+		titleBarStyle: "hiddenInset",
 		webPreferences: {
 			nodeIntegration: false,
-			preload: path.join(__dirname, "inject/app.js"),
-			webSecurity: false
+			preload: path.join(__dirname, "inject/app.js")
 		}
 	});
 

@@ -31,11 +31,11 @@
 	},
 	"homepage": "https://github.com/dcrousso/GroupMe#readme",
 	"devDependencies": {
-		"electron": "^1.4.14",
-		"electron-packager": "^8.5.0"
+		"electron": "23.2.0",
+		"electron-debug": "3.2.0",
+		"electron-packager": "17.1.1"
 	},
 	"dependencies": {
-		"electron-debug": "^1.1.0",
-		"electron-dl": "^1.6.0"
+		"electron-dl": "3.5.0"
 	}
 }
