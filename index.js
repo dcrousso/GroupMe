@@ -1,14 +1,15 @@
-const electron   = require("electron");
+const electron = require("electron");
 const filesystem = require("fs");
-const path       = require("path");
-const Menu       = require("./modules/Menu");
-const Storage    = require("./modules/Storage");
+const path = require("path");
+const Menu = require("./modules/Menu");
+const Storage = require("./modules/Storage");
 
 // require("electron-debug");
 require("electron-dl")();
 
 let mainWindow = null;
 let isQuitting = false;
+let numberOfChats = 0;
 
 if (!electron.app.requestSingleInstanceLock()) {
 	electron.app.quit();
@@ -28,6 +29,16 @@ electron.app.on("second-instance", () => {
 electron.ipcMain.on("count-badges-result", (event, data) => {
 	if (typeof electron.app.setBadgeCount === "function")
 		electron.app.setBadgeCount(isNaN(data) ? 0 : data);
+});
+
+electron.ipcMain.on("count-open-chats-result", (event, data) => {
+	numberOfChats = data;
+});
+
+electron.ipcMain.on("chat-closed", () => {
+	if (numberOfChats == 0) {
+		electron.app.hide();
+	}
 });
 
 function createMainWindow() {
